@@ -12,6 +12,7 @@ interface UserStore {
   setSearchQuery: (query: string) => void;
   setSelectedUserId: (id: string | null) => void;
   toggleUserStatus: (id: string) => void;
+  addUser: (user:User)=>void;
 }
 
 export const useUserStore = create<UserStore>((set) => ({
@@ -30,4 +31,8 @@ export const useUserStore = create<UserStore>((set) => ({
         : user
     )
   })),
+
+addUser: (newUser)=> set((state)=>({
+  users: [newUser, ...state.users]
+})),
 }));
